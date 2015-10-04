@@ -2,11 +2,13 @@
 //  AppDelegate.swift
 //  Ping
 //
-//  Created by Sudhanshu Nath Mishra on 10/3/15.
-//  Copyright (c) 2015 Shreyanshu. All rights reserved.
+//  Created by Shreyash Agrawal on 10/3/15.
+//  Copyright © 2015 shreyanshu. All rights reserved.
 //
 
 import UIKit
+import Parse
+import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // [Optional] Power your app with Local Datastore. For more info, go to
+        // https://parse.com/docs/ios_guide#localdatastore/iOS
+        Parse.enableLocalDatastore()
+        
+        // Initialize Parse.
+        Parse.setApplicationId("89HP1yTUSY7RazAktkB3Qa8cHGcmv8JgysRzEW29",
+            clientKey: "32KmUnrYQ8DzaHzrT3oUKfIbBFyibPFqMd1ctoUt")
+        
+        // [Optional] Track statistics around application opens.
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
         return true
     }
 
