@@ -12,8 +12,8 @@
 		894582DE1BC09BC5004C8113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894582DC1BC09BC5004C8113 /* Main.storyboard */; };
 		894582E01BC09BC5004C8113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 894582DF1BC09BC5004C8113 /* Assets.xcassets */; };
 		894582E31BC09BC5004C8113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894582E11BC09BC5004C8113 /* LaunchScreen.storyboard */; };
-		894582EB1BC09CA2004C8113 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582EA1BC09CA2004C8113 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
-		894582ED1BC09CAF004C8113 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582EC1BC09CAF004C8113 /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
+		894582EB1BC09CA2004C8113 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582EA1BC09CA2004C8113 /* Parse.framework */; };
+		894582ED1BC09CAF004C8113 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582EC1BC09CAF004C8113 /* Bolts.framework */; };
 		894582EF1BC09CE9004C8113 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582EE1BC09CE9004C8113 /* AudioToolbox.framework */; };
 		894582F11BC09CEF004C8113 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582F01BC09CEF004C8113 /* CFNetwork.framework */; };
 		894582F31BC09CF5004C8113 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582F21BC09CF5004C8113 /* CoreGraphics.framework */; };
@@ -24,8 +24,9 @@
 		894582FD1BC09D12004C8113 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582FC1BC09D12004C8113 /* SystemConfiguration.framework */; };
 		894582FF1BC09D7A004C8113 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 894582FE1BC09D7A004C8113 /* libsqlite3.tbd */; };
 		894583011BC09D85004C8113 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 894583001BC09D85004C8113 /* libz.tbd */; };
-		894583051BC09F92004C8113 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894583031BC09F92004C8113 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		894583061BC09F92004C8113 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894583041BC09F92004C8113 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
+		894583051BC09F92004C8113 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894583031BC09F92004C8113 /* FBSDKCoreKit.framework */; };
+		894583061BC09F92004C8113 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894583041BC09F92004C8113 /* FBSDKLoginKit.framework */; };
+		8983AD521C3CAFDC002DC7AE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8983AD511C3CAFDC002DC7AE /* CreateEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		894583001BC09D85004C8113 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		894583031BC09F92004C8113 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		894583041BC09F92004C8113 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		8983AD511C3CAFDC002DC7AE /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				894582D81BC09BC5004C8113 /* AppDelegate.swift */,
 				894582DA1BC09BC5004C8113 /* ViewController.swift */,
 				894582DC1BC09BC5004C8113 /* Main.storyboard */,
+				8983AD511C3CAFDC002DC7AE /* CreateEventViewController.swift */,
 				894582DF1BC09BC5004C8113 /* Assets.xcassets */,
 				894582E11BC09BC5004C8113 /* LaunchScreen.storyboard */,
 				894582E41BC09BC5004C8113 /* Info.plist */,
@@ -201,6 +204,7 @@
 			files = (
 				894582DB1BC09BC5004C8113 /* ViewController.swift in Sources */,
 				894582D91BC09BC5004C8113 /* AppDelegate.swift in Sources */,
+				8983AD521C3CAFDC002DC7AE /* CreateEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +362,7 @@
 				894582E91BC09BC5004C8113 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
