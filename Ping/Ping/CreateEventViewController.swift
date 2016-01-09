@@ -14,17 +14,15 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
     var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet var eventNameTextField: UITextField!
-    @IBOutlet var eventDateTextField: UITextField!
-    @IBOutlet var eventTimeTextField: UITextField!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var eventStartTime: UIDatePicker!
+    @IBOutlet var eventEndTime: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.eventNameTextField.delegate = self;
-        self.eventDateTextField.delegate = self;
-        self.eventTimeTextField.delegate = self;
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         self.view.addGestureRecognizer(tap)
@@ -44,7 +42,14 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    @IBAction func submitEvent(sender: AnyObject) {
+    func getEventDatePickerDate(datePicker: UIDatePicker) -> String{
+        let dateFormatter = NSDateFormatter();
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let dateString = dateFormatter.stringFromDate(datePicker.date)
+        return dateString;
+    }
+    
+    @IBAction func submitEvent(sender: AnyObject){
         
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
         activityIndicator.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
@@ -57,9 +62,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         let eventObject = PFObject(className: "Events")
-        eventObject["Name"] = eventNameTextField.text
-        eventObject["Date"] = eventDateTextField.text
-        eventObject["Time"] = eventTimeTextField.text
+        eventObject["Name"] = eventNameTextField.text;
+        eventObject["startTime"] = eventStartTime.date // getEventDatePickerDate(eventStartTime);
+        eventObject["endTime"] = eventEndTime.date // getEventDatePickerDate(eventEndTime);
         let imageData = UIImageJPEGRepresentation(imageView.image!, 1.0)
         let imageFile = PFFile(name: "image.png", data:imageData!)
         eventObject["Image"] = imageFile
@@ -73,8 +78,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
                 
                 self.imageView.image = UIImage(named: "event-icon")
                 self.eventNameTextField.text = ""
-                self.eventDateTextField.text = ""
-                self.eventTimeTextField.text = ""
             } else {
                 
                 self.displayAlert("Failed!", message: "Please try again later")

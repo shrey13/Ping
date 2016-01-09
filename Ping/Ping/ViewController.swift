@@ -11,6 +11,7 @@ import Parse
 
 class ViewController: UIViewController {
 
+    @IBOutlet var eventCard: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,15 +22,19 @@ class ViewController: UIViewController {
 //            print("Object has been saved.")
 //        }
         
-        let label = UILabel(frame: CGRectMake(self.view.bounds.width/2 - 100, self.view.bounds.height/2 - 50, 200, 100))
-        label.text = "DRAG Me"
-        label.textAlignment = NSTextAlignment.Center
-        self.view.addSubview(label)
+//        let label = UILabel(frame: CGRectMake(self.view.bounds.width/2 - 100, self.view.bounds.height/2 - 50, 200, 100))
+//        label.text = "DRAG Me"
+//        label.textAlignment = NSTextAlignment.Center
+//        self.view.addSubview(label)
         
         let gesture = UIPanGestureRecognizer(target: self, action: Selector("wasDragged:"))
-        label.addGestureRecognizer(gesture)
+        eventCard.addGestureRecognizer(gesture)
         
-        label.userInteractionEnabled = true
+        eventCard.userInteractionEnabled = true
+    }
+    
+    func create5ImageStack() {
+        
     }
     
     func wasDragged(gesture: UIPanGestureRecognizer) {
