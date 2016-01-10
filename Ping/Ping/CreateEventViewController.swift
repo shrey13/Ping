@@ -34,10 +34,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
     }
     
     func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:nil))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
+        alert.show()
     }
     
     func getEventDatePickerDate(datePicker: UIDatePicker) -> String{

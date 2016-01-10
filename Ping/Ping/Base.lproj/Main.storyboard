@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="billabong.otf">
@@ -36,6 +37,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SFm-86-bls"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ume-28-ahu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ping_login_background" translatesAutoresizingMaskIntoConstraints="NO" id="Hsz-oI-iUD">
@@ -105,49 +107,39 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event-icon" translatesAutoresizingMaskIntoConstraints="NO" id="30A-nr-fA2">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="96" width="360" height="397"/>
-                                </variation>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="30A-nr-fA2"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="30A-nr-fA2"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Ping" id="7Ut-fx-qnc">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="2Ag-uq-2g2">
-                            <connections>
-                                <action selector="logout:" destination="BYZ-38-t0r" id="Lla-Wg-CfL"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Logout" id="2Ag-uq-2g2">
+                                <connections>
+                                    <action selector="logout:" destination="BYZ-38-t0r" id="Lla-Wg-CfL"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Reset" id="IUz-2I-A3p">
+                                <connections>
+                                    <action selector="restParseButton:" destination="BYZ-38-t0r" id="eOk-LU-Abx"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ddj-kd-a2u">
                             <connections>
                                 <segue destination="69C-7D-W7g" kind="show" id="y4W-i4-JwQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="eventCard" destination="30A-nr-fA2" id="Ks8-Ak-gvs"/>
                         <segue destination="JsB-85-0cm" kind="show" identifier="logoutSegue" id="zTg-6Z-qoV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627" y="-148.5"/>
+            <point key="canvasLocation" x="626.25" y="-148.875"/>
         </scene>
         <!--Create Event View Controller-->
         <scene sceneID="qN5-M7-Xi7">
