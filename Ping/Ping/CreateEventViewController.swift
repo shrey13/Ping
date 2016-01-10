@@ -35,9 +35,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
     
     func displayAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
     }

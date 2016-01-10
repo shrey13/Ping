@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cmI-Ks-LKA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JsB-85-0cm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="billabong.otf">
+            <string>Billabong</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="4Ln-hp-4y3">
             <objects>
                 <navigationController id="cmI-Ks-LKA" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j8H-uu-jzr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -19,7 +25,76 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LsK-fE-pg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-147" y="-112"/>
+            <point key="canvasLocation" x="-303" y="-126"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="co9-sT-Rrq">
+            <objects>
+                <viewController id="JsB-85-0cm" customClass="LoginViewController" customModule="Ping" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fqn-x0-pcp"/>
+                        <viewControllerLayoutGuide type="bottom" id="SFm-86-bls"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ume-28-ahu">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ping_login_background" translatesAutoresizingMaskIntoConstraints="NO" id="Hsz-oI-iUD">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="-10" y="0.0" width="433" height="800"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kb-Sn-W0N">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="140"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="52" y="151" width="270" height="180"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeJ-E6-TZY">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                <state key="normal" backgroundImage="facebook_Button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="75"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="130" y="496" width="115" height="115"/>
+                                </variation>
+                                <connections>
+                                    <action selector="loginButton:" destination="JsB-85-0cm" eventType="touchUpInside" id="fSv-pO-a4b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Hsz-oI-iUD"/>
+                                <exclude reference="1kb-Sn-W0N"/>
+                                <exclude reference="KeJ-E6-TZY"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Hsz-oI-iUD"/>
+                                <include reference="1kb-Sn-W0N"/>
+                                <include reference="KeJ-E6-TZY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="cmI-Ks-LKA" kind="show" identifier="loginSegue" id="ATj-ko-leT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ItF-d5-Clg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1248.75" y="-137.625"/>
         </scene>
         <!--Ping-->
         <scene sceneID="tne-QT-ifu">
@@ -33,12 +108,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event-icon" translatesAutoresizingMaskIntoConstraints="NO" id="wCC-N3-NlJ">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="194" width="360" height="201"/>
-                                </variation>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event-icon" translatesAutoresizingMaskIntoConstraints="NO" id="30A-nr-fA2">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -49,26 +118,31 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="wCC-N3-NlJ"/>
                                 <exclude reference="30A-nr-fA2"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="wCC-N3-NlJ"/>
                                 <include reference="30A-nr-fA2"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Ping" id="7Ut-fx-qnc">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Ddj-kd-a2u">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="2Ag-uq-2g2">
+                            <connections>
+                                <action selector="logout:" destination="BYZ-38-t0r" id="Lla-Wg-CfL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ddj-kd-a2u">
                             <connections>
                                 <segue destination="69C-7D-W7g" kind="show" id="y4W-i4-JwQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="eventCard" destination="30A-nr-fA2" id="Ks8-Ak-gvs"/>
+                        <segue destination="JsB-85-0cm" kind="show" identifier="logoutSegue" id="zTg-6Z-qoV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -185,5 +259,7 @@
     </scenes>
     <resources>
         <image name="event-icon" width="256" height="256"/>
+        <image name="facebook_Button" width="231" height="231"/>
+        <image name="ping_login_background" width="750" height="1334"/>
     </resources>
 </document>
