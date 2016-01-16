@@ -10,62 +10,24 @@ import UIKit
 import Parse
 import EventKit
 
+
 class ViewController: UIViewController {
 
 //    var currentEventId = ""
     var listOfEvents = [String]()
+    let eventCardYOrigin = CGFloat(100)
+    let eventCardHeight = CGFloat(400)
+    let currentEventCard = eventCardView()
     
-    @IBAction func logout(sender: AnyObject) {
-        PFUser.logOut()
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            self.performSegueWithIdentifier("logoutSegue", sender: self)
-        }
-    }
-    
-    @IBAction func restParseButton(sender: AnyObject) {
-        let query = PFQuery(className: "Events")
-        query.findObjectsInBackgroundWithBlock{
-            (events: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                for event in events! {
-                    event.removeObjectForKey("attending")
-                    event.removeObjectForKey("notAttending")
-                }
-                PFObject.saveAllInBackground(events)
-                
-                let alert = UIAlertView(title: "Reset", message: "Successfully Reset data", delegate: self, cancelButtonTitle: "OK")
-                alert.show()
-                self.listOfEvents.removeAll()
-                self.loadImages()
-            } else {
-                print(error)
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-//        let testObject = PFObject(className: "TestObject")
-//        testObject["foo"] = "bar"
-//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            print("Object has been saved.")
-//        }
-        
-//        let label = UILabel(frame: CGRectMake(self.view.bounds.width/2 - 100, self.view.bounds.height/2 - 50, 200, 100))
-//        label.text = "DRAG Me"
-//        label.textAlignment = NSTextAlignment.Center
-//        self.view.addSubview(label)
-        
-        
-        
-        loadImages()
+        // Do any additional setup after loading the view, typically from a nib.       
+        loadEventCards()
         
     }
     
-    func loadImages() {
-        
+    func loadEventCards() {
         
         let query = PFQuery(className: "Events")
         query.limit = 5
@@ -83,6 +45,18 @@ class ViewController: UIViewController {
                 if let objects = objects {
                     for object in objects {
 //                        self.currentEventId = object.objectId!
+                        let eventCard = eventCardView(frame: CGRect(x: 20, y: 100, width: self.view.bounds.width-40, height: self.eventCardHeight))
+                        
+                        eventCard.setEventName(object["Name"] as! String)
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "EEE, MMM dd yyyy hh:mm a"
+                        
+                        let startDateTime = object["startTime"] as! NSDate
+                        let endDateTime = object["endTime"] as! NSDate
+                        eventCard.setEventStartDate(dateFormatter.stringFromDate(startDateTime))
+                        eventCard.setEventEndDate(dateFormatter.stringFromDate(endDateTime))
+                        
                         let imageFile = object["Image"]
                         imageFile.getDataInBackgroundWithBlock{
                             (imageData: NSData?, error: NSError?) -> Void in
@@ -91,18 +65,12 @@ class ViewController: UIViewController {
                                 print(error)
                             } else{
                                 if let data = imageData{
-                                    let eventImage = UIImageView(frame: CGRect(x: 20, y: 100, width: self.view.bounds.width-40, height: 350))
-                                    eventImage.image = UIImage(data: data)
-                                    eventImage.backgroundColor = UIColor.whiteColor()
-                                    eventImage.layer.borderColor = UIColor.blackColor().CGColor
-                                    eventImage.layer.borderWidth = 1.0
-                                    eventImage.layer.cornerRadius = 10.0
-                                    eventImage.contentMode = UIViewContentMode.ScaleAspectFit
+                                    eventCard.setImage(UIImage(data: data)!)
                                     self.listOfEvents.append(object.objectId!)
-                                    self.view.insertSubview(eventImage, atIndex: 2)
+                                    self.view.insertSubview(eventCard, atIndex: 2)
                                     let gesture = UIPanGestureRecognizer(target: self, action: Selector("wasDragged:"))
-                                    eventImage.addGestureRecognizer(gesture)
-                                    eventImage.userInteractionEnabled = true
+                                    eventCard.addGestureRecognizer(gesture)
+                                    eventCard.userInteractionEnabled = true
 //                                    self.eventCard.image = UIImage(data: data)
                                 }
                             }
@@ -118,10 +86,11 @@ class ViewController: UIViewController {
     }
     
     func wasDragged(gesture: UIPanGestureRecognizer) {
+        let imageYCenter = eventCardYOrigin + eventCardHeight/2
         let translation = gesture.translationInView(self.view)
         
-        let eventCard = gesture.view!
-        eventCard.center = CGPoint(x: self.view.bounds.width/2 + translation.x, y: 275 + translation.y)
+        let eventCard = gesture.view! as! eventCardView
+        eventCard.center = CGPoint(x: self.view.bounds.width/2 + translation.x, y: imageYCenter + translation.y)
         
         let xFromCenter = eventCard.center.x - self.view.bounds.width/2
         
@@ -156,7 +125,7 @@ class ViewController: UIViewController {
                 listOfEvents.removeFirst()
                 UIView.animateWithDuration(0.7, animations: {
                     if (acceptedOrRejected == "acceptedEvents") {
-                        self.addEventToCalendar()
+                        self.addEventToCalendar(eventCard)
                         eventCard.center = CGPoint(x: self.view.bounds.width*2, y: eventCard.center.y)
                     } else {
                         eventCard.center = CGPoint(x: -self.view.bounds.width, y: eventCard.center.y)
@@ -166,9 +135,11 @@ class ViewController: UIViewController {
                         eventCard.removeFromSuperview()
                 })
             } else {
-                stretch = CGAffineTransformScale(rotation, 1, 1)
-                eventCard.transform = stretch
-                eventCard.center = CGPoint(x: self.view.bounds.width/2, y: 275)
+                UIView.animateWithDuration(0.3, animations: {
+                    stretch = CGAffineTransformScale(rotation, 1, 1)
+                    eventCard.transform = stretch
+                    eventCard.center = CGPoint(x: self.view.bounds.width/2, y: imageYCenter)
+                })
             }
             
 //            updateImage() //Image Updates after finger is released
@@ -187,7 +158,7 @@ class ViewController: UIViewController {
                     (success: Bool, error: NSError?) -> Void in
                     if (error == nil) {
                         if (self.listOfEvents.count <= 3) {
-                            self.loadImages()
+                            self.loadEventCards()
                         }
                     } else {
                         print(error)
@@ -197,7 +168,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func addEventToCalendar() {
+    func addEventToCalendar(eventCard: eventCardView) {
         let eventStore : EKEventStore = EKEventStore()
         // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
         eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
@@ -205,11 +176,13 @@ class ViewController: UIViewController {
             if (granted) && (error == nil) {
                 print("granted \(granted)")
                 print("error  \(error)")
-                
                 let event:EKEvent = EKEvent(eventStore: eventStore)
-                event.title = "Test Title"
-                event.startDate = NSDate()
-                event.endDate = NSDate()
+                print("Event Card \(eventCard)")
+                event.title = eventCard.getEventName()
+                print("Event Time in Calendar \(eventCard.getEventStartDate())")
+                print("Event Time in Calendar \(eventCard.getEventEndDate())")
+                event.startDate = eventCard.getEventStartDate()
+                event.endDate = eventCard.getEventEndDate()
                 event.notes = "This is a note"
                 event.calendar = eventStore.defaultCalendarForNewEvents
                 do {
@@ -227,5 +200,32 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func logout(sender: AnyObject) {
+        PFUser.logOut()
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            self.performSegueWithIdentifier("logoutSegue", sender: self)
+        }
+    }
+    
+    @IBAction func restParseButton(sender: AnyObject) {
+        let query = PFQuery(className: "Events")
+        query.findObjectsInBackgroundWithBlock{
+            (events: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                for event in events! {
+                    event.removeObjectForKey("attending")
+                    event.removeObjectForKey("notAttending")
+                }
+                PFObject.saveAllInBackground(events)
+                
+                let alert = UIAlertView(title: "Reset", message: "Successfully Reset data", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+                self.listOfEvents.removeAll()
+                self.loadEventCards()
+            } else {
+                print(error)
+            }
+        }
+    }
 }
 

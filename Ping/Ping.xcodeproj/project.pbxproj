@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		892DBD4F1C4496730043A10D /* eventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892DBD4E1C4496730043A10D /* eventCardView.swift */; };
 		894582D91BC09BC5004C8113 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894582D81BC09BC5004C8113 /* AppDelegate.swift */; };
-		894582DB1BC09BC5004C8113 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894582DA1BC09BC5004C8113 /* ViewController.swift */; };
+		894582DB1BC09BC5004C8113 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894582DA1BC09BC5004C8113 /* HomeViewController.swift */; };
 		894582DE1BC09BC5004C8113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894582DC1BC09BC5004C8113 /* Main.storyboard */; };
 		894582E01BC09BC5004C8113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 894582DF1BC09BC5004C8113 /* Assets.xcassets */; };
 		894582E31BC09BC5004C8113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894582E11BC09BC5004C8113 /* LaunchScreen.storyboard */; };
@@ -34,9 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		892DBD4E1C4496730043A10D /* eventCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventCardView.swift; sourceTree = "<group>"; };
 		894582D51BC09BC4004C8113 /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894582D81BC09BC5004C8113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		894582DA1BC09BC5004C8113 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		894582DA1BC09BC5004C8113 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		894582DD1BC09BC5004C8113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		894582DF1BC09BC5004C8113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		894582E21BC09BC5004C8113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		892DBD4D1C44962F0043A10D /* eventCard */ = {
+			isa = PBXGroup;
+			children = (
+				892DBD4E1C4496730043A10D /* eventCardView.swift */,
+			);
+			name = eventCard;
+			sourceTree = "<group>";
+		};
 		894582CC1BC09BC4004C8113 = {
 			isa = PBXGroup;
 			children = (
@@ -110,9 +120,10 @@
 		894582D71BC09BC5004C8113 /* Ping */ = {
 			isa = PBXGroup;
 			children = (
+				892DBD4D1C44962F0043A10D /* eventCard */,
 				89CFA8251C41C9B000260DAE /* billabong.otf */,
 				894582D81BC09BC5004C8113 /* AppDelegate.swift */,
-				894582DA1BC09BC5004C8113 /* ViewController.swift */,
+				894582DA1BC09BC5004C8113 /* HomeViewController.swift */,
 				894582DC1BC09BC5004C8113 /* Main.storyboard */,
 				8983AD511C3CAFDC002DC7AE /* CreateEventViewController.swift */,
 				894582DF1BC09BC5004C8113 /* Assets.xcassets */,
@@ -220,8 +231,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				892DBD4F1C4496730043A10D /* eventCardView.swift in Sources */,
 				89CFA8241C41B31100260DAE /* LoginViewController.swift in Sources */,
-				894582DB1BC09BC5004C8113 /* ViewController.swift in Sources */,
+				894582DB1BC09BC5004C8113 /* HomeViewController.swift in Sources */,
 				894582D91BC09BC5004C8113 /* AppDelegate.swift in Sources */,
 				8983AD521C3CAFDC002DC7AE /* CreateEventViewController.swift in Sources */,
 			);

@@ -38,12 +38,12 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, UINaviga
         alert.show()
     }
     
-    func getEventDatePickerDate(datePicker: UIDatePicker) -> String{
-        let dateFormatter = NSDateFormatter();
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        let dateString = dateFormatter.stringFromDate(datePicker.date)
-        return dateString;
-    }
+//    func getEventDatePickerDate(datePicker: UIDatePicker) -> String{
+//        let dateFormatter = NSDateFormatter();
+//        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+//        let dateString = dateFormatter.stringFromDate(datePicker.date)
+//        return dateString;
+//    }
     
     @IBAction func submitEvent(sender: AnyObject){
         
